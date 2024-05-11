@@ -174,7 +174,7 @@ def extract_and_save_sections(file_path, headers, output_dir):
 
 # Modify the main execution to include the combining function
 def main():
-    ticker_input = input("Enter the ticker symbol of the company: ")
+    ticker_input =  "AAPL" #for github workflows, otherwise use this for ticker of choice: input("Enter the ticker symbol of the company: ")
     email_input = "karthikgaur8@gmail.com"
     save_path = f"C:/PyProject/FSIL/sec-edgar-filings/{ticker_input}/10-K"
     cleaned_files_dir = f"C:/PyProject/FSIL/{ticker_input}_cleaned"
