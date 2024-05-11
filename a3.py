@@ -102,7 +102,7 @@ def analyze_text_with_openai(file_path):
                 model="gpt-3.5-turbo",
                 messages=[{
                     "role": "system",
-                    "content": "Summarize the key points about revenue and earnings growth from this:"
+                    "content": "Generate highly concise and to the point financial insight from this data (less than 300 words). At the end generate data that helps with visualization after the heading: 'Visualization data' and only write data with percentages eg: Revenue by product or geograpical business or increase in profits or some other financial metric performance into visulization data if no percentages available, don't write visualization data. I don't want any boilerplate sentences. It needs to be a professional, concize financial anazlysis."
                 }, {
                     "role": "user",
                     "content": chunk
