@@ -2,6 +2,7 @@ import os
 from sec_edgar_downloader import Downloader
 import datetime
 import openai
+import re
 
 
 def download_10k_filings(ticker, email):
@@ -77,7 +78,7 @@ def combine_cleaned_files(cleaned_files_dir, ticker):
 
 def analyze_text_with_openai(file_path):
     # Load the OpenAI API key from environment variables
-    openai.api_key = "sk-proj-uhtroZkIrPN3TQjYP7wrT3BlbkFJCwEmBmptAMWaFmO6PPuh"
+    openai.api_key = "sk-proj-Nga0ck1bXaEUmbntrgKzT3BlbkFJe06VlWRYEp88PzIE62BO"
     if not openai.api_key:
         raise ValueError("OpenAI API key is not working")
 
@@ -133,6 +134,38 @@ def split_into_chunks(text, chunk_size=4000):
     return chunks
 
 
+import os
+import re
+
+def extract_and_save_sections(file_path, headers, output_dir):
+    if not os.path.exists(file_path):
+        print(f"File does not exist: {file_path}")
+        return
+
+    with open(file_path, 'r', encoding='utf-8') as file:
+        text = file.read()
+
+    # Ensure the output directory exists
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+
+    for header in headers:
+        pattern_string = fr"({re.escape(header)})" + r"(\s*.*?)(?=\n{header}|\Z)"
+        pattern = re.compile(pattern_string, re.S | re.I)
+        matches = pattern.finditer(text)
+
+        for match_number, match in enumerate(matches):
+            content = match.group(2).strip()
+            # Limit to approximately 2000 words
+            words = content.split()[:2000]
+            shortened_content = ' '.join(words)
+
+            header_filename = f"{header.lower().replace(' ', '_')}_{match_number + 1}.txt"
+            header_file_path = os.path.join(output_dir, header_filename)
+
+            with open(header_file_path, 'w', encoding='utf-8') as output_file:
+                output_file.write(shortened_content)
+            print(f"Extracted and saved section: {header_filename}")
 
 
 
@@ -140,19 +173,38 @@ def split_into_chunks(text, chunk_size=4000):
 
 
 # Modify the main execution to include the combining function
-if __name__ == "__main__":
+def main():
     ticker_input = input("Enter the ticker symbol of the company: ")
-    email_input = "karthikgaur16@gmail.com"
+    email_input = "karthikgaur8@gmail.com"
     save_path = f"C:/PyProject/FSIL/sec-edgar-filings/{ticker_input}/10-K"
     cleaned_files_dir = f"C:/PyProject/FSIL/{ticker_input}_cleaned"
     combined_file_path = os.path.join(cleaned_files_dir, f"{ticker_input}_combined_cleaned.txt")
     
+
+    # Define headers you are interested in
+    headers = ["RISK FACTORS", "SELECTED FINANCIAL DATA", "FINANCIAL STATEMENTS AND SUPPLEMENTARY DATA"]
+    
+    # Step 1: Process filings and combine them
     download_10k_filings(ticker_input, email_input)
     process_filings(save_path, ticker_input)
     combine_cleaned_files(cleaned_files_dir, ticker_input)
-    analyze_text_with_openai(combined_file_path)
-    insights = analyze_text_with_openai(combined_file_path)
-    for insight in insights:
-        print(insight)
+    
+    # Step 2: Extract and save sections per header
+    sections_output_dir = f"{cleaned_files_dir}/sections"
+    extract_and_save_sections(combined_file_path, headers, sections_output_dir)
 
+    # Step 3: Analyze extracted sections with OpenAI
+    insights = {}
+    for header in headers:
+        header_files = [f for f in os.listdir(sections_output_dir) if f.startswith(header.lower().replace(' ', '_'))]
+        for file_name in header_files:
+            file_path = os.path.join(sections_output_dir, file_name)
+            insight = analyze_text_with_openai(file_path)
+            insights[file_name] = insight
 
+    # Step 4: Print insights for each section
+    for file_name, insight in insights.items():
+        print(f"Insights for {file_name}: {insight}")
+
+if __name__ == "__main__":
+    main()
