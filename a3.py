@@ -78,7 +78,7 @@ def combine_cleaned_files(cleaned_files_dir, ticker):
 
 def analyze_text_with_openai(file_path):
     # Load the OpenAI API key from environment variables
-    openai.api_key = "sk-proj-w28RRxcPT7aTrUiwdHL9T3BlbkFJsAl18Z7GEjyvKvZeEHSD"
+    openai.api_key = os.getenv("OPENAI_API_KEY")
     if not openai.api_key:
         raise ValueError("OpenAI API key is not working")
 
