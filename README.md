@@ -25,35 +25,19 @@ This Python script automates the downloading, cleaning, analyzing, and section e
 
 ## Installation
 
-Before running the script, ensure Python is installed on your system. Install the necessary packages using pip:
-
-```bash
-pip install sec_edgar_downloader openai
-```
+Before running the script, ensure Python is installed on your system. Install the necessary packages using pip.
 
 ## Setup
 
-1. **API Key**: Securely store your OpenAI API key in an environment variable:
-
-   ```bash
-   export OPENAI_API_KEY='Your-OpenAI-API-Key'
-   ```
-
+1. **API Key**: Securely store your OpenAI API key in an environment variable.
 2. **Email Configuration**: Required for using the SEC EDGAR downloader as per SEC regulations.
 
 ## Usage
 
 To run the script:
-
 1. Clone or download the repository to your local machine.
 2. Navigate to the script's directory.
-3. Execute the script via the command line:
-
-   ```bash
-   python sec_10k_processor.py
-   ```
-
-4. Input the ticker symbol and your email address as prompted.
+3. Execute the script via the command line.
 
 ## File Structure
 
@@ -76,5 +60,10 @@ Contributions are welcome to enhance or expand the functionality of this script.
 
 ## Contact
 
-For questions or issues, contact the repository maintainer or open an issue in the project's GitHub repository.
+For questions or issues, contact me at karthikgaur16@gmail.com or open an issue in the project's GitHub repository.
 
+## Video Project Demo
+
+For a more visual explanation on how this works, watch the demo [here](https://youtu.be/DrN5DVKFf0k).
+
+---
