@@ -81,5 +81,7 @@ Contributions are welcome to enhance or expand the functionality of this script.
 
 For questions or issues, contact me at karthikgaur16@gmail.com or open an issue in the project's GitHub repository.
 
+![Screenshot 2024-05-13 204135](https://github.com/Karthikgaur8/FSIL/assets/75495140/95e098f0-4038-4a18-b9ee-ab72ee6df223)
+![Screenshot 2024-05-13 204014](https://github.com/Karthikgaur8/FSIL/assets/75495140/194804cf-d339-4a48-93fa-52aba323b14e)
 
 ---
