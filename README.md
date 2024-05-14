@@ -2,6 +2,8 @@
 
 This project is a Flask web application that automates the downloading, cleaning, analyzing, section extraction, and visualization of 10-K filings from the SEC EDGAR database. It uses the `sec_edgar_downloader` package to fetch filings, processes text to clean and organize it, extracts specific sections based on predefined headers, utilizes the OpenAI API to generate insightful analyses from the structured data, and then visualizes this data using Matplotlib.
 
+![Screenshot 2024-05-13 204014](https://github.com/Karthikgaur8/FSIL/assets/75495140/194804cf-d339-4a48-93fa-52aba323b14e)
+
 ## Video Project Demo
 
 For a more visual explanation on how this works, watch the demo [here](https://youtu.be/YFybARHk8GY).
@@ -82,6 +84,5 @@ Contributions are welcome to enhance or expand the functionality of this script.
 For questions or issues, contact me at karthikgaur16@gmail.com or open an issue in the project's GitHub repository.
 
 ![Screenshot 2024-05-13 204135](https://github.com/Karthikgaur8/FSIL/assets/75495140/95e098f0-4038-4a18-b9ee-ab72ee6df223)
-![Screenshot 2024-05-13 204014](https://github.com/Karthikgaur8/FSIL/assets/75495140/194804cf-d339-4a48-93fa-52aba323b14e)
 
 ---
